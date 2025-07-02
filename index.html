@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Altman - Architect of the AI Future</title>
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #ccd6f6;
+            --text-light: #8892b0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .nav-scrolled {
+            background-color: rgba(10, 25, 47, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 150px;
+        }
+        .hero-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 3px solid var(--accent);
+        }
+        .tagline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .intro {
+            max-width: 700px;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        .bio {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .bio-text {
+            font-size: 1.1rem;
+        }
+        .bio-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .milestone {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .milestone:hover {
+            transform: translateY(-5px);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background-color: white;
+            padding: 20px;
+        }
+        .project-content {
+            padding: 20px;
+        }
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        .quotes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        blockquote {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            font-style: italic;
+            transition: transform 0.3s ease;
+        }
+        blockquote:hover {
+            transform: translateY(-5px);
+        }
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .media-item {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .media-item:hover {
+            transform: translateY(-5px);
+        }
+        .media-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .media-content {
+            padding: 15px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .social-icon {
+            font-size: 24px;
+            margin: 0 15px;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+        .social-icon:hover {
+            color: var(--accent);
+        }
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--secondary);
+                flex-direction: column;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+                z-index: 999;
+            }
+            .nav-links li {
+                margin: 0;
+                opacity: 0;
+            }
+            .nav-links a {
+                display: block;
+                padding: 20px;
+                text-align: center;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-active {
+                transform: translateX(0%);
+            }
+            .bio {
+                grid-template-columns: 1fr;
+            }
+        }
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sam Altman</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <img src="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/vip/2025/01/sam-altman-inc.jpg" alt="Sam Altman" class="hero-img">
+        <h1 class="tagline">Architect of the AI Future</h1>
+        <p class="intro">CEO of OpenAI, former President of Y Combinator, and visionary entrepreneur. Sam Altman is shaping the future of artificial intelligence with groundbreaking innovations like ChatGPT and DALL-E.</p>
+        <a href="#about" class="btn">Learn More</a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="bio">
+            <div class="bio-text">
+                <p>Born and raised in St. Louis, Missouri, Sam Altman's journey into technology began at the age of 8 when he received his first computer. Despite dropping out of Stanford University, his entrepreneurial spirit led him to found Loopt, a location-based social networking app, at just 19 years old.</p>
+                <p>In 2014, Sam became the President of Y Combinator, one of the world's most prestigious startup accelerators. Under his leadership, YC expanded significantly, launching initiatives like YC Continuity and Startup School to support founders at various stages.</p>
+                <p>In 2015, Sam co-founded OpenAI with a mission to ensure that artificial general intelligence benefits all of humanity. As CEO, he has overseen the development of revolutionary AI systems like ChatGPT and DALL-E, transforming how we interact with technology.</p>
+                <p>Sam is openly gay and a signatory of the Giving Pledge, committing to donate the majority of his wealth to charitable causes during his lifetime.</p>
+            </div>
+            <img src="https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/talks/talk_148296/4f775345-82e9-42d5-83cc-ff50aa8fa007/SamAltman_2025-embed.jpg" alt="Sam Altman Speaking" class="bio-img">
+        </div>
+        <div class="milestone">
+            <h3>November 2023: Brief Ousting and Reinstatement at OpenAI</h3>
+            <p>In one of the most dramatic corporate events in tech history, Sam was briefly removed as CEO of OpenAI before being reinstated days later following overwhelming support from employees and the tech community.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Ventures</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1280px-OpenAI_Logo.svg.png" alt="OpenAI" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">OpenAI</h3>
+                    <p>Co-founded in 2015, OpenAI is dedicated to ensuring that artificial general intelligence benefits all of humanity. Under Sam's leadership, OpenAI has developed groundbreaking AI systems like ChatGPT and DALL-E.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Y_Combinator_logo.svg/1200px-Y_Combinator_logo.svg.png" alt="Y Combinator" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Y Combinator</h3>
+                    <p>As President from 2014 to 2019, Sam transformed Y Combinator into a global powerhouse for startup acceleration. He launched YC Continuity, a fund for growth-stage companies, and Startup School, an online program for aspiring founders.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://helionenergy.com/wp-content/uploads/2021/11/Helion_Logo_Horizontal_White.png" alt="Helion Energy" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Key Investments</h3>
+                    <p>Sam has made significant investments in transformative companies, including Helion (fusion energy), Stripe (payments infrastructure), and Reddit (social news aggregation). His investment philosophy focuses on companies with potential for exponential impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights">
+        <h2>Thought Leadership</h2>
+        <div class="quotes-container">
+            <blockquote>
+                "AI will lower the cost of goods and services because labor is the driving cost at many levels of the supply chain."
+                <footer>- On AI's Economic Impact</footer>
+            </blockquote>
+            <blockquote>
+                "Development of superhuman machine intelligence is probably the greatest threat to the continued existence of humanity."
+                <footer>- On Existential Risk</footer>
+            </blockquote>
+            <blockquote>
+                "Students should focus on mastering AI tools."
+                <footer>- On Education in the AI Era</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <section id="media">
+        <h2>Media & Press</h2>
+        <div class="media-grid">
+            <div class="media-item">
+                <img src="https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/talks/talk_148296/4f775345-82e9-42d5-83cc-ff50aa8fa007/SamAltman_2025-embed.jpg" alt="TED Talk" class="media-img">
+                <div class="media-content">
+                    <h3>TED Talk: The Future of AI</h3>
+                    <p>Sam discusses the potential and risks of artificial intelligence.</p>
+                    <a href="#" class="btn">Watch</a>
+                </div>
+            </div>
+            <div class="media-item">
+                <img src="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/vip/2025/01/sam-altman-inc.jpg" alt="Hard Fork Podcast" class="media-img">
+                <div class="media-content">
+                    <h3>Hard Fork Podcast</h3>
+                    <p>An in-depth conversation about OpenAI's mission and the future of technology.</p>
+                    <a href="#" class="btn">Listen</a>
+                </div>
+            </div>
+            <div class="media-item">
+                <img src="https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/talks/talk_148296/4f775345-82e9-42d5-83cc-ff50aa8fa007/SamAltman_2025-embed.jpg" alt="Y Combinator Talk" class="media-img">
+                <div class="media-content">
+                    <h3>Y Combinator Startup School</h3>
+                    <p>Sam shares insights on building successful startups in the AI era.</p>
+                    <a href="#" class="btn">Watch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Connect With Sam</h2>
+        <p>For business inquiries: sam@altman-technologies.com</p>
+        <div class="social-links">
+            <a href="#" class="social-icon">
+                <i class="fab fa-twitter">Twitter</i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-linkedin">LinkedIn</i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-github">GitHub</i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('nav-scrolled', window.scrollY > 10);
+        });
+
+        // Mobile navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            // Animate links
+            links.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Hamburger animation
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Close mobile menu when clicking a link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('nav-active')) {
+                    navLinks.classList.remove('nav-active');
+                    hamburger.classList.remove('toggle');
+                    
+                    links.forEach(link => {
+                        link.style.animation = '';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
